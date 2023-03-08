@@ -1,7 +1,7 @@
 # Configuración general
 title: R Curso de Probabilidad y Estadistica
 description: Lugar donde esta el resultado de las clases
-theme: hacker
+remote_theme: pages-themes/hacker@v0.2.0
 url: https://julianvaldes24.github.io/R-Curso-Probabilidad-Estadistica/
 
 # Configuración de navegación
@@ -16,3 +16,4 @@ footer_pages:
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-remote-theme
