@@ -50,7 +50,7 @@ frec_tabla
 * #### Plot tabla de frecuencias
 ![Plot tabla de frecuencias](./src/img/PlotTablaFrecuencias.png)
 
-## Gráfica de barras *ggplot2*
+## Gráficas de barras *ggplot2*
 
 ### Gráfica de barras frecuencia absoluta
 * Este código en R utiliza la librería ggplot2 para crear un gráfico de barras de las frecuencias absolutas de una variable cualitativa llamada Manufacturer en un conjunto de datos llamado base_carros. La función geom_bar se utiliza para crear un gráfico de barras, donde se define el mapeo de datos para el eje x, que en este caso es el nombre de los fabricantes, utilizando la función aes que toma como argumento x = Manufacturer. No se especifica la altura de cada barra, por lo que por defecto se muestra la frecuencia absoluta de cada fabricante.
@@ -69,23 +69,108 @@ ggplot(data = base_carros) +
         legend.title = element_text(color = "#b5e853"),)
 ```
 * #### ggplot barras frecuencia absoluta
-![Plot Tabla de Frecuencias](./src/img/ggplotBarrasFrecuenciaAbsoluta.png)
+![Plot Frecuencia Absoluta](./src/img/ggplotBarrasFrecuenciaAbsoluta.png)
 
 ### Gráfica de barras frecuencia relativa
+* Este código está generando un gráfico de barras con las frecuencias relativas de los fabricantes de los carros en función del país de origen del fabricante.
 
+  * La función ggplot() establece el conjunto de datos base_carros como el origen de los datos para el gráfico.
+  * La función geom_bar() se utiliza para crear un gráfico de barras y el parámetro mapping se utiliza para asignar las variables estéticas a las columnas del conjunto de datos. En este caso, el eje x representa el fabricante, el eje y representa la frecuencia relativa de los fabricantes, el parámetro fill se utiliza para asignar el país de origen de cada fabricante al color de la barra y el parámetro group se utiliza para agrupar los datos por país de origen.
+  * La función theme() se utiliza para establecer los aspectos de la apariencia del gráfico, como el color de fondo, los colores de las líneas de la cuadrícula, los colores del texto de los ejes y el color de fondo de la leyenda.
+  * La función labs() se utiliza para establecer los títulos de los ejes y de la leyenda. En este caso, el título del eje x es "Manufacturer", el título del eje y es "Frecuencia relativa" y el título de la leyenda es "Origin".
 
-# El código utiliza el paquete ggplot2 para crear una gráfica de barras con las 
-# frecuencias relativas de los fabricantes de carros en el dataset base_carros. 
-# La función geom_bar() es usada para crear una gráfica de barras, donde se 
-# define el mapeo de datos para el eje x, que en este caso es el nombre de los 
-# fabricantes, y el eje y es la frecuencia relativa de cada fabricante. 
-# El argumento stat(prop) es utilizado para indicar que la altura de cada barra 
-# debe ser proporcional a la frecuencia relativa de cada fabricante.
+```
 ggplot(data = base_carros) + 
-  geom_bar(mapping = aes(x = Manufacturer, y = stat(prop), group = 1))
+  geom_bar(mapping = aes(x = Manufacturer, y = stat(prop), fill = Origin, group = Origin)) +
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853")) +
+  labs(x = "Manufacturer", y = "Frecuencia relativa", fill = "Origin")
+```
 
-# Grafica de barras que muestra la proporción de una variable categórica (Manufacturer).
-# La función fct_reorder() de la librería forcats se utiliza para ordenar las categorías por longitud.
-# La función stat(prop) para mostrar la proporción en lugar del recuento.
+* #### ggplot barras frecuencia relativa
+![Plot Frecuencia Relativa](./src/img/ggplotBarrasFrecuenciaRelativa.png)
+
+### Gráfica de barras frecuencia relativa ordenados por el número de caracteres en su nombre
+* Este código genera una gráfica de barras que muestra la frecuencia relativa de los fabricantes de autos en la base de datos base_carros, ordenados por el número de caracteres en su nombre (usando la función fct_reorder del paquete forcats). Además, el color de las barras se define por la variable Origin de la base de datos. La leyenda correspondiente se agrega utilizando las funciones labs y theme, y se personalizan los colores del fondo, las líneas de la cuadrícula, los ejes y la leyenda.
+
+* La advertencia que aparece indica que se eliminaron estéticas durante la transformación estadística, lo que podría deberse a una estructura de agrupación incorrecta en los datos. En este caso, es probable que la variable Origin no esté formateada correctamente como un factor en la base de datos.
+
+```
 ggplot(data = base_carros) + 
-  geom_bar(mapping = aes(x = fct_reorder(Manufacturer,Manufacturer,length), y = stat(prop), group = 1))
+  geom_bar(mapping = aes(x = fct_reorder(Manufacturer,Manufacturer,length), y = stat(prop), fill = Origin, group = Origin)) +
+  labs(x = "Manufacturer", y = "Frecuencia relativa", title = "Frecuencia relativa de fabricantes de autos") +
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+
+* #### ggplot barras frecuencia relativa ordenados por el número de caracteres en su nombre
+![Plot Frecuencia Relativa](./src/img/ggplotBarrasFrecuenciaRelativaSortName.png)
+
+### Gráfica de barras frecuencia relativa y apila el tipo de airbag que utilizan
+* Este código crea una gráfica de barras que muestra la frecuencia de fabricantes de autos en el eje x y el número de modelos que tienen bolsas de aire en el eje y. Cada barra está coloreada según si los modelos tienen o no bolsas de aire.
+
+  * ggplot(data = base_carros) establece la fuente de datos para la gráfica como el dataframe base_carros.
+
+  * geom_bar(mapping = aes(x = Manufacturer, fill = AirBags)) especifica que la gráfica tendrá barras y define dos mapeos estéticos: el eje x se asigna a Manufacturer y el relleno de las barras se asigna a AirBags.
+
+  * theme(...) establece el tema de la gráfica. En este caso, establece el color de fondo, las líneas de la cuadrícula y los colores de los textos y de la leyenda.
+
+```
+ggplot(data = base_carros) + 
+  geom_bar(mapping = aes(x = Manufacturer, fill = AirBags))+
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+
+* #### ggplot barras frecuencia relativa relativa apilando tipo de airbag
+![Plot Frecuencia Relativa Airbags](./src/img/ggplotBarrasFrecuenciaAirbag.png)
+
+### Gráfica de barras proporcionales de fabricantes y tipos de automóvil
+* Este código genera una gráfica de barras apiladas proporcionales que muestra la proporción de cada tipo de automóvil por fabricante en los datos de base_carros.
+
+* En la función geom_bar, se utiliza el parámetro mapping para establecer la variable Manufacturer en el eje x y la variable Type en el relleno de las barras. El parámetro position se establece como "fill" para apilar las barras de manera proporcional en lugar de mostrarlas en paralelo.
+
+* En la sección del tema, se establece el color de fondo del panel, la trama y las líneas de la cuadrícula, así como el color del texto de los ejes y la leyenda. También se establece el color de fondo de la leyenda y el color del texto de la leyenda.
+
+```
+# Grafica proporcion
+ggplot(data = base_carros) + 
+  geom_bar(mapping = aes(x = Manufacturer, fill = Type), position = "fill")+
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+
+* #### ggplot barras frecuencia relativa relativa apilando tipo de airbag
+![Plot Frecuencia Relativa Airbags](./src/img/ggplotBarrasProporcionales.png)
+
+## Gráficas circulares *ggplot2*
+
+### 
