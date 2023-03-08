@@ -143,7 +143,7 @@ ggplot(data = base_carros) +
         legend.title = element_text(color = "#b5e853"))
 ```
 
-* #### ggplot barras frecuencia relativa relativa apilando tipo de airbag
+* #### ggplot barras frecuencia relativa apilando tipo de airbag
 ![Plot Frecuencia Relativa Airbags](./src/img/ggplotBarrasFrecuenciaAirbag.png)
 
 ### Gráfica de barras proporcionales de fabricantes y tipos de automóvil
@@ -168,9 +168,52 @@ ggplot(data = base_carros) +
         legend.title = element_text(color = "#b5e853"))
 ```
 
-* #### ggplot barras frecuencia relativa relativa apilando tipo de airbag
-![Plot Frecuencia Relativa Airbags](./src/img/ggplotBarrasProporcionales.png)
+* #### ggplot barras proporcionales de fabricantes y tipo de automóvil
+![Plot Frecuencia Proporcional](./src/img/ggplotBarrasProporcionales.png)
 
 ## Gráficas circulares *ggplot2*
 
-### 
+### Grafica circular de proporcion de fabricantes
+* Este código genera un gráfico circular (o gráfico de rosca) que muestra la proporción de fabricantes de autos en una base de datos llamada resumen_manufacturer, utilizando el paquete ggplot2 de R.
+
+* La función ggplot() inicia el gráfico, y se le pasa como primer argumento el nombre de la base de datos que contiene los datos a graficar (resumen_manufacturer). Luego, se utiliza la función aes() para indicar que el eje x no tiene variable asociada (x = ""), el eje y representa la proporción de fabricantes (y = prop), y el color de las barras representa los diferentes fabricantes (fill = Manufacturer).
+
+* A continuación, se utiliza la función geom_bar() para indicar que se quiere un gráfico de barras (stat = "identity"), y la función coord_polar() para transformar el gráfico de barras en uno circular. Finalmente, se utilizan las funciones theme() y sus parámetros para ajustar la apariencia del gráfico (fondo, colores, líneas, textos, leyendas, etc.).
+
+```
+ggplot(resumen_manufacturer, aes(x = "", y = prop, fill = Manufacturer)) +
+  geom_bar(stat = "identity")  +
+  coord_polar("y") +
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+
+* #### ggplot circular porporcional de fabricantes
+![Plot Circular Proporcional de Fabricantes](./src/img/ggplotCircularProporcionFabricantesAutos.png)
+
+### Grafica polar de frecuencia de fabricantes
+* Este código genera un gráfico de barras apiladas y polar. El eje x representa los diferentes fabricantes de automóviles y el eje y muestra la frecuencia de los mismos. El color de las barras representa el origen del fabricante. La función coord_polar() transforma el gráfico para que sea polar. Los elementos de la temática (theme()) se encargan de definir el estilo visual del gráfico, como el color de fondo, los colores de las líneas, texto y leyenda.
+
+```
+ggplot(data = base_carros) + 
+  geom_bar(mapping = aes(x = Manufacturer, fill= Origin)) +
+  coord_polar()+
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#b5e853"),
+        panel.grid.minor = element_line(color = "#b5e853"),
+        axis.text = element_text(color = "#ffffff"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+* #### ggplot polar frecuencia de fabricantes
+![Plot Circular Polar de Frecuencia](./src/img/ggplotCircularPolarFrecuencia.png)
