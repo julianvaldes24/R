@@ -1,4 +1,7 @@
-# Analisis CARS99
+# Análisis exploratorio de datos con R: Estudio de caso en una base de datos de carros del año 1999
+
+## Introducción
+Este artículo se enfoca en un análisis exploratorio de datos realizado en una base de datos de carros del año 1999 utilizando el lenguaje de programación R. En él se describen los pasos necesarios para instalar los paquetes necesarios, cargar los datos, realizar análisis de frecuencia y visualizaciones utilizando las librerías ggplot2, y tabular y calcular medidas de tendencia central y variabilidad. Este tipo de análisis puede ser útil en la identificación de patrones y tendencias en los datos, lo que puede ayudar a tomar decisiones informadas en distintos ámbitos.
 
 ## Instalación de paquetes necesarios
 * La función install.packages("MASS") se utiliza para instalar el paquete MASS. Esta función descarga e instala el paquete en la biblioteca de R.
@@ -490,8 +493,6 @@ sd(base_carros$RPM) / mean(base_carros$RPM) * 100
 
 * El resultado obtenido indica que el coeficiente de variación para la variable RPM es del 11.3%, lo que sugiere que existe una dispersión moderada en los valores de RPM en comparación con su media.
 
+## Conclusion
 
-
-
-
-
+En conclusión, en este artículo se realizó un análisis exploratorio de datos de una base de datos de carros del año 1999 utilizando R. Se aplicaron diversas técnicas de análisis descriptivo para explorar la frecuencia de las variables, como la tabla de frecuencias y las gráficas de barras y circulares. Además, se utilizaron medidas de tendencia central como la media, mediana y moda, así como medidas de variabilidad como el rango intercuartilico, varianza, desviación estándar y coeficiente de variación para analizar la distribución de las variables. Este tipo de análisis es fundamental para entender las características de los datos y poder tomar decisiones informadas basadas en la información obtenida.
