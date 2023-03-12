@@ -217,3 +217,27 @@ ggplot(data = base_carros) +
 ```
 * #### ggplot polar frecuencia de fabricantes
 ![Plot Circular Polar de Frecuencia](./src/img/ggplotCircularPolarFrecuencia.png)
+
+## Graficas histogramas
+
+### Histogramas para 2 variables cuantitativas
+
+* Este código utiliza la librería ggplot2 de R para generar un histograma 2D que muestra la distribución conjunta de las variables "Price" y "EngineSize" de la tabla "base_carros". La escala de color utilizada va desde el verde claro hasta el verde oscuro. Además, se utilizan opciones de formato para cambiar el color de fondo, la rejilla, los ejes y la leyenda, lo que permite mejorar la visualización del gráfico.
+
+```
+ggplot(base_carros, aes(x = Price, y = EngineSize)) + 
+  geom_bin2d() +
+  scale_fill_gradient(low = "#ebf7d5", high = "#a1e61e") +
+  labs(title = "Histograma 2D de Precio y Tamaño del Motor", x = "Precio", y = "Tamaño del Motor")+
+  theme(panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853"))
+```
+* #### ggplot histograma de Precio y Tamaño del Motor
+![Plot Circular Polar de Frecuencia](./src/img/ggplotHisotgramaPriceEngineSize.png)
