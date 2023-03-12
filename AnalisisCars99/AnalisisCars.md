@@ -314,6 +314,7 @@ ggplot(df, aes(x = DriveTrain, y = AirBags, fill = value)) +
   * El 62.5% de los vehículos con tracción trasera no tienen AirBags, mientras que el 37.5% tienen AirBags.
 
 * #### Frecuencias relativas por tabla
+
 | ↓ AirBags/DriveTrain → | 4WD        | Front      | Rear   |
 |--------------------|------------|------------|------------|
 | Driver & Passenger | 0.00000000 | 0.11827957 | 0.05376344 |
@@ -323,6 +324,174 @@ ggplot(df, aes(x = DriveTrain, y = AirBags, fill = value)) +
   * El 30.11% de todos los vehículos tienen AirBags delanteros y traseros y tracción delantera.
   * El 10.75% de todos los vehículos no tienen AirBags y tienen tracción trasera.
   * Solo el 5.38% de todos los vehículos tienen AirBags delanteros y traseros, tracción en las cuatro ruedas y ningún AirBags.
+
+## Medidas de tendencia central o localización
+
+### Media de caballos de fuerza *Horsepower*
+
+* El comando mean(base_carros$Horsepower, na.rm=TRUE) es utilizado en el lenguaje de programación R para calcular la media aritmética de los valores numéricos de la columna 'Horsepower' en el objeto base_carros. El argumento na.rm=TRUE indica que se deben excluir los valores faltantes (NA) al calcular la media.
+
+```
+mean(base_carros$Horsepower, na.rm=TRUE)
+```
+
+### Media recortada de caballos de fuerza *Horsepower*
+
+* El comando mean(base_carros$Horsepower, na.rm=TRUE, trim=0.1) también es utilizado en R para calcular la media aritmética de los valores numéricos de la columna 'Horsepower' en el objeto base_carros. En este caso, el argumento adicional trim=0.1 indica que se debe aplicar la media recortada al 10% para excluir el 10% de los valores atípicos (los más bajos y los más altos). Es decir, el 10% de los valores más bajos y el 10% de los valores más altos se excluyen del cálculo de la media. Los argumentos na.rm=TRUE y trim=0.1 juntos indican que los valores faltantes también se deben excluir del cálculo de la media recortada al 10%.
+
+```
+mean(base_carros$Horsepower, na.rm=TRUE, trim=0.1)
+```
+
+### Mediana de caballos de fuerza *Horsepower*
+
+* El comando median(base_carros$Horsepower) es utilizado en R para calcular la mediana de los valores numéricos de la columna 'Horsepower' en el objeto base_carros. La mediana es el valor que se encuentra en el centro de una distribución ordenada de datos, es decir, el valor que divide a la mitad a los datos. En este caso, el comando calculará la mediana de los valores de potencia (Horsepower) de los carros en la base de datos.
+
+```
+median(base_carros$Horsepower)
+```
+
+### Moda de caballos de fuerza *Horsepower*
+
+* Este código define una función en R llamada mode que calcula la moda de un vector numérico x. La función utiliza la función table() para contar el número de ocurrencias de cada valor en el vector, y luego encuentra el valor que tiene la frecuencia máxima utilizando la función which.max(). Finalmente, la función devuelve la moda en formato numérico.
+
+* El comando mode(base_carros$Horsepower) utiliza la función mode() previamente definida para calcular la moda de los valores numéricos de la columna 'Horsepower' en el objeto base_carros. La moda es el valor que ocurre con mayor frecuencia en una distribución de datos.
+
+```
+mode <- function(x) {
+  return(as.numeric(names(which.max(table(x)))))
+}
+
+mode(base_carros$Horsepower)
+```
+
+### Cuartiles de caballos de fuerza *Horsepower*
+
+* El comando summary(base_carros$Horsepower) en R genera un resumen estadístico de la variable Horsepower en el objeto base_carros. El resumen estadístico incluye los siguientes valores:
+
+  * El número de observaciones no faltantes (N)
+  * La media aritmética (mean)
+  * La mediana (50%)
+  * El valor mínimo (Min)
+  * El primer cuartil (25%)
+  * El tercer cuartil (75%)
+  * El valor máximo (Max)
+
+* Este comando proporciona una descripción general de la distribución de la variable Horsepower en la base de datos.
+
+```
+summary(base_carros$Horsepower)
+```
+
+| Min  | 1st Qu | Median | Mean  | 3rd Qu | Max   |
+|------|--------|--------|-------|--------|-------|
+| 55.0 | 103.0  | 140.0  | 143.8 | 170.0  | 300.0 |
+
+### Percentiles de caballos de fuerza *Horsepower*
+
+* Este código calcula los percentiles 1, 5, 10, 90.95 y 99 de la variable Horsepower en la base de datos base_carros.
+
+* La función quantile() en R se utiliza para calcular percentiles y cuartiles de un conjunto de datos. En este caso, la función recibe dos argumentos: el primer argumento es la variable de interés base_carros$Horsepower, y el segundo argumento es un vector numérico que especifica los percentiles que deseamos calcular. En este caso, el vector de probabilidades (probs) contiene los valores 0.01, 0.05, 0.10, 0.9095 y 0.99.
+
+* Esto significa que la función quantile() calculará los valores correspondientes a los percentiles 1, 5, 10, 90.95 y 99 de la variable Horsepower. Los valores calculados serán devueltos como un vector que contiene los valores de los percentiles especificados en el mismo orden en que se especificaron.
+
+```
+quantile(base_carros$Horsepower, probs=c(0.01, 0.05, 0.10, 0.9095, 0.99))
+```
+
+| 1%     | 5%      | 10%    | 90.95%  | 99      |
+|--------|---------|--------|---------|---------|
+| 62.360 | 78.200  | 86.000 | 209.348 | 300.000 |
+
+## Medidas de Variabilidad
+
+### Rango tamaño del motor *EngineSize*
+
+* Este código en R calcula el rango de la variable EngineSize en la base de datos base_carros.
+
+* Primero, se utiliza la función min() para encontrar el valor mínimo de la variable EngineSize en la base de datos base_carros, y se guarda el resultado en la variable es_min. Luego, se utiliza la función max() para encontrar el valor máximo de la variable EngineSize en la base de datos base_carros, y se guarda el resultado en la variable es_max.
+
+* A continuación, se calcula el rango de la variable EngineSize como la diferencia entre el valor máximo y el valor mínimo, y se guarda el resultado en la variable rango.
+
+* En resumen, el código devuelve el rango de la variable EngineSize en la base de datos base_carros.
+
+```
+es_min = min(base_carros$EngineSize)
+es_max = max(base_carros$EngineSize)
+rango = es_max-es_min
+rango
+```
+```
+[1] 4.7
+```
+
+* El rango de 4.7 indica que la variable EngineSize en la base de datos base_carros varía entre un valor mínimo y un valor máximo que difieren en 4.7 unidades. Sin embargo, el rango por sí solo no proporciona información sobre la distribución de los datos, ya que se ve afectado por valores atípicos y no tiene en cuenta la cantidad de datos entre el valor mínimo y el valor máximo.
+
+### Rango intercuantilico tamaño del motor *EngineSize*
+
+* El código cuartiles = quantile(base_carros$EngineSize, probs=c(0.25,0.5,0.75), type = 6) calcula los tres cuartiles (Q1, Q2 y Q3) de la variable EngineSize en la base de datos base_carros, utilizando el método tipo 6.
+
+* Luego, cuartiles[3]-cuartiles[1] resta el primer cuartil (Q1) al tercer cuartil (Q3), obteniendo así el rango intercuartil (IQR) de la variable EngineSize. El IQR es una medida de dispersión que mide la distancia entre el primer cuartil (Q1) y el tercer cuartil (Q3), y es una medida resistente a valores extremos (outliers).
+
+* Por lo tanto, el resultado del código cuartiles[3]-cuartiles[1] indica el rango intercuartil de la variable EngineSize en la base de datos base_carros. Esta medida proporciona información sobre la variabilidad de los datos entre el Q1 y Q3 y se utiliza a menudo para detectar valores atípicos. Un IQR más grande indica una mayor dispersión de los datos, mientras que un IQR más pequeño indica que los datos están más concentrados en torno a la mediana.
+
+```
+cuartiles = quantile(base_carros$EngineSize, probs=c(0.25,0.5,0.75), type = 6)
+cuartiles[3]-cuartiles[1]
+```
+```
+75% 
+1.5 
+```
+
+* El resultado indica que la distancia intercuartil es de 1.5, lo que significa que el 50% de los datos de la variable EngineSize están contenidos en un rango de 1.5 unidades. Es decir, la mitad de los datos se encuentran dentro de ese rango de valores.
+
+### Varianza revoluciones por minuto *RPM*
+
+* Este código se utiliza para calcular la varianza de la variable "RPM" en el conjunto de datos "base_carros".
+
+* La función "var" de R calcula la varianza de un vector numérico. En este caso, el argumento de la función es "base_carros$RPM", lo que significa que se está calculando la varianza de la columna "RPM" del conjunto de datos "base_carros".
+
+* El resultado de la función es un número que representa la varianza de los valores de "RPM" en el conjunto de datos. La varianza es una medida de dispersión que indica qué tan dispersos están los datos alrededor de la media. Si la varianza es alta, significa que los datos están muy dispersos; si la varianza es baja, significa que los datos están muy agrupados alrededor de la media.
+
+```
+var(base_carros$RPM)
+```
+```
+[1] 356088.7
+```
+
+* El resultado de var(base_carros$RPM) es 356088.7, lo que significa que la varianza de la variable RPM en la base de datos es de aproximadamente 356088.7.
+
+### Desviación estándar revoluciones por minuto *RPM*
+
+* El código sd(base_carros$RPM) se utiliza para calcular la desviación estándar de la variable RPM en la base de datos base_carros. La desviación estándar es una medida de dispersión que mide la cantidad de variación o dispersión de un conjunto de datos con respecto a su media. En este caso, la desviación estándar de la variable RPM indica cuánto se alejan los valores de RPM de la media de la variable. Una desviación estándar alta indica que los valores de RPM están más dispersos, mientras que una desviación estándar baja indica que los valores de RPM están más agrupados cerca de la media. En resumen, la desviación estándar se utiliza para cuantificar la variabilidad de una variable en una base de datos.
+
+```
+sd(base_carros$RPM)
+```
+```
+[1] 596.7317
+```
+
+*  En este caso, la desviación estándar de 596.7314 de la variable RPM es relativamente alta, lo que indica que los valores de RPM están bastante dispersos en la base de datos.
+
+### Coeficiente de variación revoluciones por minuto *RPM*
+
+* El coeficiente de variación (CV) se calcula dividiendo la desviación estándar de una variable entre su media y multiplicando el resultado por 100 para expresarlo en porcentaje.
+
+```
+sd(base_carros$RPM) / mean(base_carros$RPM) * 100
+```
+
+```
+[1] 11.30036
+```
+
+* El resultado obtenido indica que el coeficiente de variación para la variable RPM es del 11.3%, lo que sugiere que existe una dispersión moderada en los valores de RPM en comparación con su media.
+
+
+
 
 
 
