@@ -100,8 +100,8 @@ ggplot(data = base_carros) +
 * #### ggplot barras frecuencia relativa
 ![Plot Frecuencia Relativa](./src/img/ggplotBarrasFrecuenciaRelativa.png)
 
-### Gráfica de barras frecuencia relativa ordenados por el número de caracteres en su nombre
-* Este código genera una gráfica de barras que muestra la frecuencia relativa de los fabricantes de autos en la base de datos base_carros, ordenados por el número de caracteres en su nombre (usando la función fct_reorder del paquete forcats). Además, el color de las barras se define por la variable Origin de la base de datos. La leyenda correspondiente se agrega utilizando las funciones labs y theme, y se personalizan los colores del fondo, las líneas de la cuadrícula, los ejes y la leyenda.
+### Gráfica de barras frecuencia relativa ordenada por el número de caracteres en su nombre
+* Este código genera una gráfica de barras que muestra la frecuencia relativa de los fabricantes de autos en la base de datos base_carros, ordenada por el número de caracteres en su nombre (usando la función fct_reorder del paquete forcats). Además, el color de las barras se define por la variable Origin de la base de datos. La leyenda correspondiente se agrega utilizando las funciones labs y theme, y se personalizan los colores del fondo, las líneas de la cuadrícula, los ejes y la leyenda.
 
 * La advertencia que aparece indica que se eliminaron estéticas durante la transformación estadística, lo que podría deberse a una estructura de agrupación incorrecta en los datos. En este caso, es probable que la variable Origin no esté formateada correctamente como un factor en la base de datos.
 
@@ -157,7 +157,7 @@ ggplot(data = base_carros) +
 * En la sección del tema, se establece el color de fondo del panel, la trama y las líneas de la cuadrícula, así como el color del texto de los ejes y la leyenda. También se establece el color de fondo de la leyenda y el color del texto de la leyenda.
 
 ```
-# Grafica proporcion
+# Gráfica proporcion
 ggplot(data = base_carros) + 
   geom_bar(mapping = aes(x = Manufacturer, fill = Type), position = "fill")+
   theme(panel.background = element_rect(fill = "#000000"),
@@ -176,7 +176,7 @@ ggplot(data = base_carros) +
 
 ## Gráficas circulares *ggplot2*
 
-### Grafica circular de proporcion de fabricantes
+### Gráfica circular de proporcion de fabricantes
 * Este código genera un gráfico circular (o gráfico de rosca) que muestra la proporción de fabricantes de autos en una base de datos llamada resumen_manufacturer, utilizando el paquete ggplot2 de R.
 
 * La función ggplot() inicia el gráfico, y se le pasa como primer argumento el nombre de la base de datos que contiene los datos a graficar (resumen_manufacturer). Luego, se utiliza la función aes() para indicar que el eje x no tiene variable asociada (x = ""), el eje y representa la proporción de fabricantes (y = prop), y el color de las barras representa los diferentes fabricantes (fill = Manufacturer).
@@ -201,7 +201,7 @@ ggplot(resumen_manufacturer, aes(x = "", y = prop, fill = Manufacturer)) +
 * #### ggplot circular porporcional de fabricantes
 ![Plot Circular Proporcional de Fabricantes](./src/img/ggplotCircularProporcionFabricantesAutos.png)
 
-### Grafica polar de frecuencia de fabricantes
+### Gráfica polar de frecuencia de fabricantes
 * Este código genera un gráfico de barras apiladas y polar. El eje x representa los diferentes fabricantes de automóviles y el eje y muestra la frecuencia de los mismos. El color de las barras representa el origen del fabricante. La función coord_polar() transforma el gráfico para que sea polar. Los elementos de la temática (theme()) se encargan de definir el estilo visual del gráfico, como el color de fondo, los colores de las líneas, texto y leyenda.
 
 ```
@@ -430,7 +430,7 @@ rango
 
 * El rango de 4.7 indica que la variable EngineSize en la base de datos base_carros varía entre un valor mínimo y un valor máximo que difieren en 4.7 unidades. Sin embargo, el rango por sí solo no proporciona información sobre la distribución de los datos, ya que se ve afectado por valores atípicos y no tiene en cuenta la cantidad de datos entre el valor mínimo y el valor máximo.
 
-### Rango intercuantilico tamaño del motor *EngineSize*
+### Rango intercuartílico tamaño del motor *EngineSize*
 
 * El código cuartiles = quantile(base_carros$EngineSize, probs=c(0.25,0.5,0.75), type = 6) calcula los tres cuartiles (Q1, Q2 y Q3) de la variable EngineSize en la base de datos base_carros, utilizando el método tipo 6.
 
@@ -495,4 +495,4 @@ sd(base_carros$RPM) / mean(base_carros$RPM) * 100
 
 ## Conclusion
 
-En conclusión, en este artículo se realizó un análisis exploratorio de datos de una base de datos de carros del año 1999 utilizando R. Se aplicaron diversas técnicas de análisis descriptivo para explorar la frecuencia de las variables, como la tabla de frecuencias y las gráficas de barras y circulares. Además, se utilizaron medidas de tendencia central como la media, mediana y moda, así como medidas de variabilidad como el rango intercuartilico, varianza, desviación estándar y coeficiente de variación para analizar la distribución de las variables. Este tipo de análisis es fundamental para entender las características de los datos y poder tomar decisiones informadas basadas en la información obtenida.
+En conclusión, en este artículo se realizó un análisis exploratorio de datos de una base de datos de carros del año 1999 utilizando R. Se aplicaron diversas técnicas de análisis descriptivo para explorar la frecuencia de las variables, como la tabla de frecuencias y las gráficas de barras y circulares. Además, se utilizaron medidas de tendencia central como la media, mediana y moda, así como medidas de variabilidad como el rango intercuartílico, varianza, desviación estándar y coeficiente de variación para analizar la distribución de las variables. Este tipo de análisis es fundamental para entender las características de los datos y poder tomar decisiones informadas basadas en la información obtenida.
