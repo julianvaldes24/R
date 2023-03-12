@@ -290,3 +290,39 @@ ggplot(df, aes(x = DriveTrain, y = AirBags, fill = value)) +
 
 * #### ggplot gráfico de mosaico de AirBags y DriveTrain
 ![Plot Circular Polar de Frecuencia](./src/img/xtabMosaicoAirBagsDriveTrain.png)
+* #### Frecuencias relativas por fila
+
+| ↓ AirBags/DriveTrain → | 4WD        | Front      | Rear   |
+|--------------------|------------|------------|------------|
+| Driver & Passenger | 0.00000000 | 0.68750000 | 0.31250000 |
+| Driver only        | 0.11627907 | 0.65116279 | 0.23255814 |
+| None               | 0.14705882 | 0.82352941 | 0.02941176 |
+
+  * El 68.75% de los vehículos con AirBags delanteros y traseros tienen tracción delantera, mientras que el 31.25% tienen tracción trasera.
+  * El 82.35% de los vehículos sin AirBags tienen tracción delantera, el 14.71% tienen tracción trasera y el 2.94% tienen tracción en las cuatro ruedas.
+
+* #### Frecuencias relativas por columna
+
+| ↓ AirBags/DriveTrain → | 4WD        | Front  | Rear    |
+|--------------------|------------|------------|---------|
+| Driver & Passenger | 0.0000000 | 0.1641791 | 0.3125000 |
+| Driver only        | 0.5000000 | 0.4179104 | 0.6250000 |
+| None               | 0.5000000 | 0.4179104 | 0.0625000 |
+
+  * El 50% de los vehículos con tracción en las cuatro ruedas tienen AirBags delanteros y traseros, mientras que el 50% no tienen AirBags.
+  * El 82.35% de los vehículos con tracción delantera tienen AirBags, mientras que el 17.65% no tienen AirBags.
+  * El 62.5% de los vehículos con tracción trasera no tienen AirBags, mientras que el 37.5% tienen AirBags.
+
+* #### Frecuencias relativas por tabla
+| ↓ AirBags/DriveTrain → | 4WD        | Front      | Rear   |
+|--------------------|------------|------------|------------|
+| Driver & Passenger | 0.00000000 | 0.11827957 | 0.05376344 |
+| Driver only        | 0.05376344 | 0.30107527 | 0.10752688 |
+| None               | 0.05376344 | 0.30107527 | 0.01075269 |
+
+  * El 30.11% de todos los vehículos tienen AirBags delanteros y traseros y tracción delantera.
+  * El 10.75% de todos los vehículos no tienen AirBags y tienen tracción trasera.
+  * Solo el 5.38% de todos los vehículos tienen AirBags delanteros y traseros, tracción en las cuatro ruedas y ningún AirBags.
+
+
+
