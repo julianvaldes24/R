@@ -1,3 +1,5 @@
+{% include favicon.html %}
+
 # Análisis exploratorio de datos con R: Estudio de caso en una base de datos de carros del año 1999
 
 ## Introducción
