@@ -241,3 +241,52 @@ ggplot(base_carros, aes(x = Price, y = EngineSize)) +
 ```
 * #### ggplot histograma de Precio y Tamaño del Motor
 ![Plot Circular Polar de Frecuencia](./src/img/ggplotHisotgramaPriceEngineSize.png)
+
+## Tabulación
+
+### Tabulación cruzada de frecuencias
+
+* Utiliza la función xtabs() para generar una tabla de contingencia a partir de las variables categóricas AirBags y DriveTrain.
+* Utiliza la función prop.table() para calcular las frecuencias relativas por fila, por columna y por tabla.
+* Convierte la tabla de contingencia en un data frame y utiliza la función pivot_longer() para convertir la tabla en formato "wide" a "long".
+* Utiliza ggplot() y geom_tile() para generar un gráfico de mosaico a partir del data frame obtenido en el paso anterior.
+* Define los ajustes estéticos y de tema para el gráfico generado.
+
+```
+# Tabulación cruzada con xtabs
+tab <- xtabs(~ AirBags + DriveTrain, data = base_carros)
+
+# Frecuencias relativas por fila
+prop.row <- prop.table(tab, margin = 1)
+print(prop.row)
+
+# Frecuencias relativas por columna
+prop.col <- prop.table(tab, margin = 2)
+print(prop.col)
+
+# Frecuencias relativas por tabla
+prop.tbl <- prop.table(tab)
+print(prop.tbl)
+
+df <- as.data.frame(tab)
+df <- pivot_longer(df, cols = c(Freq), names_to = "count", values_to = "value")
+
+ggplot(df, aes(x = DriveTrain, y = AirBags, fill = value)) + 
+  geom_tile(color = "#000000") +
+  scale_fill_gradient(low = "#ebf7d5", high = "#a1e61e") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1), 
+        panel.background = element_rect(fill = "#000000"),
+        plot.background = element_rect(fill = "#000000"),
+        panel.grid.major = element_line(color = "#000000e6"),
+        panel.grid.minor = element_line(color = "#000000e6"),
+        axis.text = element_text(color = "#b5e853"),
+        axis.title = element_text(color = "#b5e853"),
+        legend.background = element_rect(fill = "#000000e6"),
+        legend.text = element_text(color = "#b5e853"),
+        legend.title = element_text(color = "#b5e853")) +
+  labs(x = "DriveTrain", y = "AirBags")
+
+```
+
+* #### ggplot gráfico de mosaico de AirBags y DriveTrain
+![Plot Circular Polar de Frecuencia](./src/img/xtabMosaicoAirBagsDriveTrain.png)
